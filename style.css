@@ -1,0 +1,687 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+}
+
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('sunflowers.jpg') center/cover no-repeat;
+    z-index: 0;
+    animation: subtle-zoom 20s infinite alternate;
+}
+
+.couple-corner {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+    z-index: 10;
+    animation: float 6s ease-in-out infinite;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.couple-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.couple-image:hover {
+    transform: scale(1.1);
+}
+
+.image-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 192, 203, 0.2) 0%,
+        rgba(255, 105, 180, 0.1) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+.love-title {
+    text-align: center;
+    color: #fff;
+    margin-top: 2rem;
+    z-index: 3;
+    position: relative;
+    padding: 20px;
+    animation: titleFloat 6s ease-in-out infinite;
+}
+
+.love-title h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4em;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, #ff69b4, #ff1493, #ff69b4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 3px 3px 6px rgba(255, 20, 147, 0.3),
+                 0 0 20px rgba(255, 105, 180, 0.5),
+                 0 0 40px rgba(255, 105, 180, 0.3);
+    position: relative;
+    display: inline-block;
+    padding: 0 20px;
+    letter-spacing: 2px;
+}
+
+.love-title h1::before,
+.love-title h1::after {
+    content: '❤️';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.5em;
+    opacity: 0.8;
+    animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+.love-title h1::before {
+    left: -10px;
+    animation-delay: 0.2s;
+}
+
+.love-title h1::after {
+    right: -10px;
+    animation-delay: 0.7s;
+}
+
+.love-title::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200%;
+    height: 100%;
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 192, 203, 0.2) 0%,
+        rgba(255, 105, 180, 0.1) 30%,
+        transparent 70%
+    );
+    filter: blur(10px);
+    z-index: -1;
+    animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes titleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: translateY(-50%) scale(1);
+    }
+    25% {
+        transform: translateY(-50%) scale(1.2);
+    }
+    50% {
+        transform: translateY(-50%) scale(1);
+    }
+    75% {
+        transform: translateY(-50%) scale(1.2);
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateX(-50%) scale(1.1);
+    }
+}
+
+.subtitle {
+    font-size: 1.2em;
+    font-weight: 300;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.scene {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 2rem;
+}
+
+.message-box {
+    position: relative;
+    width: 300px;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3),
+                inset 0 0 20px rgba(255, 105, 180, 0.2);
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.message-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4),
+                inset 0 0 25px rgba(255, 105, 180, 0.3);
+}
+
+.message-header {
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: linear-gradient(45deg, rgba(255, 64, 129, 0.1), rgba(255, 107, 155, 0.1));
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.message-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+    animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.text-container {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: inset 0 0 15px rgba(255, 64, 129, 0.1);
+}
+
+.text-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(20px);
+    margin-bottom: 8px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    color: #ff4081;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    font-size: 11px;
+    line-height: 1.5;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 64, 129, 0.1);
+    transition: all 0.3s ease;
+}
+
+.text-line:hover {
+    transform: translateX(-5px);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 3px 3px 10px rgba(255, 64, 129, 0.1);
+}
+
+.text-line.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+#reveal-btn {
+    margin-top: 20px;
+    background: linear-gradient(45deg, #ff4081, #ff6b9b);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+#reveal-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+    animation: shimmerBtn 2s infinite linear;
+}
+
+@keyframes shimmerBtn {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#reveal-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 64, 129, 0.4);
+    background: linear-gradient(45deg, #ff6b9b, #ff4081);
+}
+
+.image-container {
+    height: 200px;
+    background: url('mum.JPG');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 64, 129, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+}
+
+.neel-image-container {
+    height: 200px;
+    background: url('NEEL.JPG');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 64, 129, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.neel-image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+}
+
+.message-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.slideshow-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 15px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 1; }
+    45%, 55% { opacity: 0; }
+}
+
+.slideshow-img {
+    animation: fadeInOut 6s infinite;
+}
+
+.floating-elements {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.music-note {
+    position: absolute;
+    font-size: 24px;
+    color: #ff4081;
+    opacity: 0.7;
+    animation: float linear;
+    pointer-events: none;
+}
+
+#hearts-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.heart {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.3s ease;
+    background: url('heart.png') center/contain no-repeat;
+    animation: float 6s ease-in-out infinite;
+}
+
+.heart:hover {
+    transform: scale(1.2);
+}
+
+.heart::before,
+.heart::after {
+    display: none;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+}
+
+.butterflies {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 6;
+}
+
+.butterfly {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.3s ease;
+}
+
+.butterfly::before,
+.butterfly::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 25px;
+    border-radius: 15px 15px 0 0;
+    background-color: #ff4081;
+    transform-origin: 100% 100%;
+}
+
+.butterfly::before {
+    left: 15px;
+    transform: rotate(-45deg);
+}
+
+.butterfly::after {
+    left: 0;
+    transform: rotate(45deg);
+}
+
+.butterfly:hover {
+    transform: scale(1.2);
+}
+
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+@keyframes subtle-zoom {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(255, 105, 180, 0.9),
+                     0 0 30px rgba(255, 105, 180, 0.7),
+                     0 0 40px rgba(255, 105, 180, 0.5);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 30px rgba(255, 105, 180, 0.4);
+    animation: fadeIn 0.3s ease-out;
+    min-width: 200px;
+    max-width: 300px;
+    border: 1px solid rgba(255, 105, 180, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+#love-message {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2em;
+    color: #ff4081;
+    text-align: center;
+    margin: 15px 0;
+    line-height: 1.4;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.message-footer {
+    text-align: right;
+    margin-top: 15px;
+}
+
+.close-btn {
+    background: linear-gradient(45deg, #ff4081, #ff6b9b);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.close-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+}
+
+.developer-credit {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.8);
+    z-index: 1000;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.dev-heart {
+    display: inline-block;
+    animation: heartBeat 1.5s infinite;
+    font-size: 0.9em;
+}
+
+.dev-heart:first-child {
+    animation-delay: 0.2s;
+}
+
+.dev-heart:last-child {
+    animation-delay: 0.7s;
+}
+
+.second-box {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.mom-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    margin: 10px 0;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.mom-image:hover {
+    transform: scale(1.05);
+}
+
+.switch-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px auto;
+    padding: 8px 16px;
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(255, 105, 180, 0.3);
+}
+
+.switch-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+}
+
+.switch-btn i {
+    font-size: 14px;
+}
